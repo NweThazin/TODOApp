@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">TODO App</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="label_no_data">No Data</string>
+    <string name="label_title">Title</string>
+    <string name="label_description">Description</string>
+
+    <string name="menu_search">search</string>
+    <string name="menu_sort_by">Sort by</string>
+    <string name="menu_priority_high">Priority High</string>
+    <string name="menu_priority_low">Priority Low</string>
+    <string name="menu_delete_all">Delete All</string>
+    <string name="menu_add">Add</string>
+    <string name="menu_save">Save</string>
+    <string name="menu_delete">Delete</string>
+
+    <string name="label_yes">Yes</string>
+    <string name="label_no">No</string>
+
+    <string name="msg_successfully_added">Successfully added!</string>
+    <string name="msg_successfully_updated">Successfully updated!</string>
+    <string name="msg_successfully_removed">Successfully removed!</string>
+    <string name="msg_fill_all_fields">Please fill out al fields</string>
+
+
+    <string name="dialog_title">Delete %s</string>
+    <string name="dialog_message">Remove this task?</string>
+
+    <string name="dialog_remove_all_message">Remove all?</string>
+    <string name="msg_snack_bar_delete">Deleted %s</string>
+    <string name="label_undo">Undo</string>
+</resources>
