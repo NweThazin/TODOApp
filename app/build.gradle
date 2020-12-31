@@ -38,6 +38,16 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+
+    testOptions {
+        junitPlatform {
+            filters {
+                engines {
+                    include 'spek'
+                }
+            }
+        }
+    }
 }
 
 dependencies {
@@ -79,4 +89,8 @@ dependencies {
     // RecyclerView Animator
     //https://github.com/wasabeef/recyclerview-animators
     implementation 'jp.wasabeef:recyclerview-animators:3.0.0'
+
+    //Spek 1
+    testImplementation 'org.jetbrains.spek:spek-api:1.1.5'
+    testImplementation 'org.junit.platform:junit-platform-engine:1.7.0'
 }
