@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.lifecycle.observe
 import androidx.recyclerview.widget.*
 import com.example.android.todoapp.R
 import com.example.android.todoapp.data.model.ToDoData
@@ -144,16 +145,16 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     //Note: this one call high priority by calling live data
     private fun observeHighPriority() {
-        mToDoViewModel.sortByHighPriority.observe(this, { items ->
+        mToDoViewModel.sortByHighPriority.observe(this) { items ->
             adapter.setData(items)
-        })
+        }
     }
 
     //Note: this one call low priority by calling live data
     private fun observeLowPriority() {
-        mToDoViewModel.sortByLowPriority.observe(this, { items ->
+        mToDoViewModel.sortByLowPriority.observe(this) { items ->
             adapter.setData(items)
-        })
+        }
     }
 
     private fun confirmRemoval() {
@@ -194,8 +195,8 @@ class ListFragment : Fragment(), SearchView.OnQueryTextListener {
 
     private fun searchThroughDatabase(query: String) {
         val searchQuery = "%$query%"
-        mToDoViewModel.searchDatabase(searchQuery).observe(this, { list ->
+        mToDoViewModel.searchDatabase(searchQuery).observe(this) { list ->
             list?.run { adapter.setData(this) }
-        })
+        }
     }
 }
