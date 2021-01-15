@@ -3,6 +3,8 @@ package com.example.android.todoapp.data.dao
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.android.todoapp.data.model.ToDoData
+import io.reactivex.Completable
+import io.reactivex.Single
 
 @Dao
 interface ToDoDao {
@@ -11,7 +13,7 @@ interface ToDoDao {
     fun getAllData(): LiveData<List<ToDoData>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertData(toDoData: ToDoData)
+    fun insertData(toDoData: ToDoData): Single<Long>
 
     @Update
     suspend fun updateData(toDoData: ToDoData)

@@ -3,6 +3,9 @@ package com.example.android.todoapp.data.repository
 import androidx.lifecycle.LiveData
 import com.example.android.todoapp.data.dao.ToDoDao
 import com.example.android.todoapp.data.model.ToDoData
+import io.reactivex.Completable
+import io.reactivex.Single
+
 
 class ToDoRepository(private val toDoDao: ToDoDao) {
 
@@ -12,8 +15,8 @@ class ToDoRepository(private val toDoDao: ToDoDao) {
 
     val sortByLowPriority: LiveData<List<ToDoData>> = toDoDao.sortByLowPriority()
 
-    suspend fun insertData(toDoData: ToDoData) {
-        toDoDao.insertData(toDoData)
+    fun insertData(toDoData: ToDoData): Single<Long> {
+        return toDoDao.insertData(toDoData)
     }
 
     suspend fun updateData(toDoData: ToDoData) {

@@ -1,10 +1,13 @@
 package com.example.android.todoapp.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.android.todoapp.data.database.ToDoDatabase
+import com.example.android.todoapp.data.model.APIKey
 import com.example.android.todoapp.data.model.ToDoData
 import com.example.android.todoapp.data.repository.ToDoRepository
 import kotlinx.coroutines.Dispatchers
@@ -19,6 +22,8 @@ class ToDoViewModel(application: Application) : AndroidViewModel(application) {
     val sortByHighPriority: LiveData<List<ToDoData>>
     val sortByLowPriority: LiveData<List<ToDoData>>
 
+    val insertData = MutableLiveData<APIKey>()
+
     init {
         //setup repository
         repository = ToDoRepository(toDoDao)
@@ -32,6 +37,12 @@ class ToDoViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch(Dispatchers.IO) {
             //background thread
             repository.insertData(toDoData)
+                .subscribe({
+                    insertData.postValue(APIKey.SUCCESS)
+                }, { throwable ->
+                    Log.e("InsertData", throwable.toString())
+                    insertData.postValue(APIKey.ERROR)
+                })
         }
     }
 

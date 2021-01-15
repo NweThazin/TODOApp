@@ -22,7 +22,7 @@
     <string name="msg_successfully_updated">Successfully updated!</string>
     <string name="msg_successfully_removed">Successfully removed!</string>
     <string name="msg_fill_all_fields">Please fill out al fields</string>
-
+    <string name="error_msg_failed_to_add_a_task">Failed to add a task!</string>
 
     <string name="dialog_title">Delete %s</string>
     <string name="dialog_message">Remove this task?</string>

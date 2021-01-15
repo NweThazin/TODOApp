@@ -6,8 +6,10 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.android.todoapp.R
+import com.example.android.todoapp.data.model.APIKey
 import com.example.android.todoapp.data.model.Priority
 import com.example.android.todoapp.data.model.ToDoData
 import com.example.android.todoapp.viewmodel.SharedViewModel
@@ -32,8 +34,38 @@ class AddFragment : Fragment() {
         //set custom listener of spinner priority
         view.spinner_priorities.onItemSelectedListener = mSharedViewModel.listener
 
+        observeLiveData()
+
         // Inflate the layout for this fragment
         return view
+    }
+
+    private fun observeLiveData() {
+        mToDoViewModel.insertData.observe(viewLifecycleOwner, Observer {
+            when (it) {
+                APIKey.SUCCESS -> {
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.msg_successfully_added,
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                    //back to list fragment
+                    findNavController().navigate(R.id.action_addFragment_to_listFragment)
+                }
+                APIKey.FAIL -> {
+                    Toast.makeText(
+                        requireContext(),
+                        R.string.error_msg_failed_to_add_a_task,
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                else -> {
+
+                }
+            }
+
+        })
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -63,12 +95,6 @@ class AddFragment : Fragment() {
             )
 
             mToDoViewModel.insertData(newData)
-
-            Toast.makeText(requireContext(), R.string.msg_successfully_added, Toast.LENGTH_SHORT)
-                .show()
-
-            //back to list fragment
-            findNavController().navigate(R.id.action_addFragment_to_listFragment)
         } else {
             Toast.makeText(requireContext(), R.string.msg_fill_all_fields, Toast.LENGTH_SHORT)
                 .show()

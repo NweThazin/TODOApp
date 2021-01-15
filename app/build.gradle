@@ -66,6 +66,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
 
+    implementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
 
     // Room components
     implementation "androidx.room:room-runtime:2.2.6"
@@ -100,4 +101,13 @@ dependencies {
 
     testImplementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.4.10'
     testImplementation "org.jetbrains.kotlin:kotlin-reflect:$kotlin_version"
+
+    //Rx libraries
+    def rxAndroidVersion = "2.1.1"
+    def rxJavaVersion = "2.2.12"
+    def rxKotlinVersion = "2.4.0"
+    implementation "io.reactivex.rxjava2:rxandroid:${rxAndroidVersion}"
+    implementation "io.reactivex.rxjava2:rxjava:${rxJavaVersion}"
+    implementation "io.reactivex.rxjava2:rxkotlin:${rxKotlinVersion}"
+
 }
