@@ -23,6 +23,7 @@ class ToDoViewModel(application: Application) : AndroidViewModel(application) {
     val sortByLowPriority: LiveData<List<ToDoData>>
 
     val insertData = MutableLiveData<APIKey>()
+    val insertedData = MutableLiveData<ToDoData>()
 
     init {
         //setup repository
@@ -38,6 +39,7 @@ class ToDoViewModel(application: Application) : AndroidViewModel(application) {
             //background thread
             repository.insertData(toDoData)
                 .subscribe({
+                    insertedData.postValue(toDoData)
                     insertData.postValue(APIKey.SUCCESS)
                 }, { throwable ->
                     Log.e("InsertData", throwable.toString())

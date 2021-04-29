@@ -1,7 +1,7 @@
 package com.example.android.todoapp.fragments.add
 
+import android.R.attr.name
 import android.os.Bundle
-import android.text.TextUtils
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -10,17 +10,19 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.android.todoapp.R
 import com.example.android.todoapp.data.model.APIKey
-import com.example.android.todoapp.data.model.Priority
 import com.example.android.todoapp.data.model.ToDoData
 import com.example.android.todoapp.viewmodel.SharedViewModel
 import com.example.android.todoapp.viewmodel.ToDoViewModel
+import com.google.firebase.analytics.FirebaseAnalytics
 import kotlinx.android.synthetic.main.fragment_add.*
 import kotlinx.android.synthetic.main.fragment_add.view.*
+
 
 class AddFragment : Fragment() {
 
     private val mToDoViewModel: ToDoViewModel by viewModels()
     private val mSharedViewModel: SharedViewModel by viewModels()
+    private lateinit var firebaseAnalytics: FirebaseAnalytics
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,6 +32,8 @@ class AddFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_add, container, false)
         //set Menu
         setHasOptionsMenu(true)
+
+        firebaseAnalytics = FirebaseAnalytics.getInstance(requireContext())
 
         //set custom listener of spinner priority
         view.spinner_priorities.onItemSelectedListener = mSharedViewModel.listener
@@ -41,6 +45,17 @@ class AddFragment : Fragment() {
     }
 
     private fun observeLiveData() {
+        mToDoViewModel.insertedData.observe(viewLifecycleOwner, { newToDoData ->
+            newToDoData?.let {
+                // add tracking
+                val bundle = Bundle().apply {
+                    putString("Priority", newToDoData.priority.name)
+                    putString("Title", newToDoData.title)
+                }
+                firebaseAnalytics.logEvent("AddNote", bundle)
+            }
+
+        })
         mToDoViewModel.insertData.observe(viewLifecycleOwner, Observer {
             when (it) {
                 APIKey.SUCCESS -> {

@@ -1,0 +1,58 @@
+{
+    "exportFormatVersion": 2,
+    "exportTime": "2021-04-14 10:52:34",
+    "containerVersion": {
+        "path": "accounts/6003680088/containers/43633629/versions/1",
+        "accountId": "6003680088",
+        "containerId": "43633629",
+        "containerVersionId": "1",
+        "name": "TODO V1",
+        "description": "Test Version",
+        "container": {
+            "path": "accounts/6003680088/containers/43633629",
+            "accountId": "6003680088",
+            "containerId": "43633629",
+            "name": "Android_ TODO",
+            "publicId": "GTM-M7C645S",
+            "usageContext": [
+                "ANDROID_SDK_5"
+            ],
+            "fingerprint": "1618393632610",
+            "tagManagerUrl": "https://tagmanager.google.com/#/container/accounts/6003680088/containers/43633629/workspaces?apiLink=container"
+        },
+        "builtInVariable": [
+            {
+                "accountId": "6003680088",
+                "containerId": "43633629",
+                "type": "APP_ID",
+                "name": "App ID"
+            },
+            {
+                "accountId": "6003680088",
+                "containerId": "43633629",
+                "type": "APP_NAME",
+                "name": "App Name"
+            },
+            {
+                "accountId": "6003680088",
+                "containerId": "43633629",
+                "type": "APP_VERSION_CODE",
+                "name": "App Version Code"
+            },
+            {
+                "accountId": "6003680088",
+                "containerId": "43633629",
+                "type": "APP_VERSION_NAME",
+                "name": "App Version Name"
+            },
+            {
+                "accountId": "6003680088",
+                "containerId": "43633629",
+                "type": "EVENT_NAME",
+                "name": "Event Name"
+            }
+        ],
+        "fingerprint": "1618394044215",
+        "tagManagerUrl": "https://tagmanager.google.com/#/versions/accounts/6003680088/containers/43633629/versions/1?apiLink=version"
+    }
+}
